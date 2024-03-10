@@ -1,0 +1,6 @@
+spring:
+    application:
+        name: payment-business-logic-service
+
+    profiles:
+        active: local
