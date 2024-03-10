@@ -1,0 +1,3 @@
+service:
+  payment-dao:
+    base-url: ${DAO_SERVICE_URL}
