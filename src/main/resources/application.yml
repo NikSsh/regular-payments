@@ -1,6 +1,0 @@
-spring:
-  application:
-    name: payment-regulation
-
-  profiles:
-    active: local
