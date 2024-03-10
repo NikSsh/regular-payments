@@ -22,28 +22,28 @@ import org.springframework.web.bind.annotation.RequestBody;
 public interface PaymentDaoClient {
 
   @PostMapping(value = "/payments", consumes = MediaType.APPLICATION_JSON_VALUE)
-  ResponseEntity<PaymentResponse> createPayment(@RequestBody PaymentRequest paymentRequest);
+  PaymentResponse createPayment(@RequestBody PaymentRequest paymentRequest);
 
   @GetMapping(value = "/payments/{paymentId}")
-  ResponseEntity<PaymentResponse> getPayment(@PathVariable Long paymentId);
+  PaymentResponse getPayment(@PathVariable Long paymentId);
 
   @GetMapping(value = "/payments")
-  ResponseEntity<List<PaymentBriefResponse>> getPayments();
+  List<PaymentBriefResponse> getPayments();
 
   @GetMapping(value = "/payments/inn/{inn}")
-  ResponseEntity<List<PaymentClientBriefResponse>> getPayerPaymentsByInn(@PathVariable String inn);
+  List<PaymentClientBriefResponse> getPayerPaymentsByInn(@PathVariable String inn);
 
   @GetMapping(value = "/payments/okpo/{okpo}")
-  ResponseEntity<List<PaymentClientBriefResponse>> getRecipientPaymentsByOkpo(
+  List<PaymentClientBriefResponse> getRecipientPaymentsByOkpo(
       @PathVariable String okpo);
 
   @GetMapping(value = "/payments/{paymentId}/withdrawals")
-  ResponseEntity<List<PaymentWithdrawalResponse>> getPaymentWithdrawals(
+  List<PaymentWithdrawalResponse> getPaymentWithdrawals(
       @PathVariable Long paymentId);
 
   @PostMapping(value = "/payments/{paymentId}/withdrawals")
-  ResponseEntity<PaymentWithdrawalResponse> createPaymentWithdrawal(@PathVariable Long paymentId);
+  PaymentWithdrawalResponse createPaymentWithdrawal(@PathVariable Long paymentId);
 
   @DeleteMapping(value = "/payment-withdrawals/{paymentWithdrawalId}")
-  ResponseEntity<Void> deletePaymentWithdrawal(@PathVariable Long paymentWithdrawalId);
+  void deletePaymentWithdrawal(@PathVariable Long paymentWithdrawalId);
 }
