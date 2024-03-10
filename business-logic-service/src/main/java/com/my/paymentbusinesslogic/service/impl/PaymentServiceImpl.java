@@ -23,7 +23,7 @@ public class PaymentServiceImpl implements PaymentService {
   @Override
   public PaymentResponse createPayment(PaymentRequest paymentRequest) {
     encryptPaymentRequestFields(paymentRequest);
-    PaymentResponse paymentResponse = paymentDaoClient.createPayment(paymentRequest).getBody();
+    PaymentResponse paymentResponse = paymentDaoClient.createPayment(paymentRequest);
     decryptPaymentResponseFields(paymentResponse);
 
     return paymentResponse;
@@ -31,17 +31,17 @@ public class PaymentServiceImpl implements PaymentService {
 
   @Override
   public List<PaymentBriefResponse> getPayments() {
-    return paymentDaoClient.getPayments().getBody();
+    return paymentDaoClient.getPayments();
   }
 
   @Override
   public List<PaymentClientBriefResponse> getPaymentsByInn(String inn) {
-    return paymentDaoClient.getPayerPaymentsByInn(inn).getBody();
+    return paymentDaoClient.getPayerPaymentsByInn(inn);
   }
 
   @Override
   public List<PaymentClientBriefResponse> getPaymentsByOkpo(String okpo) {
-    return paymentDaoClient.getRecipientPaymentsByOkpo(okpo).getBody();
+    return paymentDaoClient.getRecipientPaymentsByOkpo(okpo);
   }
 
   private void encryptPaymentRequestFields(PaymentRequest paymentRequest) {

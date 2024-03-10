@@ -17,7 +17,7 @@ public class PaymentWithdrawalServiceImpl implements PaymentWithdrawalService {
 
   @Override
   public PaymentWithdrawalResponse createPaymentWithdrawal(Long paymentId) {
-    return paymentDaoClient.createPaymentWithdrawal(paymentId).getBody();
+    return paymentDaoClient.createPaymentWithdrawal(paymentId);
   }
 
   @Override
@@ -27,12 +27,12 @@ public class PaymentWithdrawalServiceImpl implements PaymentWithdrawalService {
 
   @Override
   public List<PaymentWithdrawalResponse> getPaymentWithdrawalsByPaymentId(Long paymentId) {
-    return paymentDaoClient.getPaymentWithdrawals(paymentId).getBody();
+    return paymentDaoClient.getPaymentWithdrawals(paymentId);
   }
 
   @Override
   public boolean isPaymentWithdrawalNeeded(Long paymentId) {
-    PaymentResponse payment = paymentDaoClient.getPayment(paymentId).getBody();
+    PaymentResponse payment = paymentDaoClient.getPayment(paymentId);
 
     return LocalDateTime.now().isAfter(
         Objects.nonNull(payment.getLastWithdrawal())
