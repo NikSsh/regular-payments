@@ -1,0 +1,3 @@
+service:
+  payment-business-logic:
+    base-url: ${PAYMENT_BUSINESS_LOGIC_SERVICE_URL}
