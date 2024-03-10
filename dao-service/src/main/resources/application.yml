@@ -13,3 +13,6 @@ spring:
     properties:
       hibernate:
         default_schema: regular_payments
+
+server:
+  port: 8081

@@ -1,3 +1,6 @@
 service:
   payment-dao:
-    base-url: http://localhost:8081/api/v1
+    base-url: http://localhost:8081
+
+encryption:
+  secret-key: -+4ye04peo-usv3u!xl)jua#m(tnu=z(u1*@%u^qnn^_v8!#wg^}

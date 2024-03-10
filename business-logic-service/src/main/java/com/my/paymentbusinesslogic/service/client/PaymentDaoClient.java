@@ -21,29 +21,29 @@ import org.springframework.web.bind.annotation.RequestBody;
 @FeignClient(name = "payment-dao-client", url = "${service.payment-dao.base-url}")
 public interface PaymentDaoClient {
 
-  @PostMapping(value = "/payments", consumes = MediaType.APPLICATION_JSON_VALUE)
+  @PostMapping(value = "/api/v1/payments", consumes = MediaType.APPLICATION_JSON_VALUE)
   ResponseEntity<PaymentResponse> createPayment(@RequestBody PaymentRequest paymentRequest);
 
-  @GetMapping(value = "/payments/{paymentId}")
+  @GetMapping(value = "/api/v1/payments/{paymentId}")
   ResponseEntity<PaymentResponse> getPayment(@PathVariable Long paymentId);
 
-  @GetMapping(value = "/payments")
+  @GetMapping(value = "/api/v1/payments")
   ResponseEntity<List<PaymentBriefResponse>> getPayments();
 
-  @GetMapping(value = "/payments/inn/{inn}")
+  @GetMapping(value = "/api/v1/payments/inn/{inn}")
   ResponseEntity<List<PaymentClientBriefResponse>> getPayerPaymentsByInn(@PathVariable String inn);
 
-  @GetMapping(value = "/payments/okpo/{okpo}")
+  @GetMapping(value = "/api/v1/payments/okpo/{okpo}")
   ResponseEntity<List<PaymentClientBriefResponse>> getRecipientPaymentsByOkpo(
       @PathVariable String okpo);
 
-  @GetMapping(value = "/payments/{paymentId}/withdrawals")
+  @GetMapping(value = "/api/v1/payments/{paymentId}/withdrawals")
   ResponseEntity<List<PaymentWithdrawalResponse>> getPaymentWithdrawals(
       @PathVariable Long paymentId);
 
-  @PostMapping(value = "/payments/{paymentId}/withdrawals")
+  @PostMapping(value = "/api/v1/payments/{paymentId}/withdrawals")
   ResponseEntity<PaymentWithdrawalResponse> createPaymentWithdrawal(@PathVariable Long paymentId);
 
-  @DeleteMapping(value = "/payment-withdrawals/{paymentWithdrawalId}")
+  @DeleteMapping(value = "/api/v1/payment-withdrawals/{paymentWithdrawalId}")
   ResponseEntity<Void> deletePaymentWithdrawal(@PathVariable Long paymentWithdrawalId);
 }

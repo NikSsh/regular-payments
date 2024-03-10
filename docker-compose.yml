@@ -22,7 +22,21 @@ services:
       SPRING_DATASOURCE_USERNAME: ${DATABASE_USERNAME:-postgres}
       SPRING_DATASOURCE_PASSWORD: ${DATABASE_PASSWORD:-postgres}
     ports:
-      - "8081:8080"
+      - "8081:8081"
+    depends_on:
+      postgres:
+        condition: service_started
+
+  business-logic-service:
+    build:
+      context: business-logic-service
+    container_name: business-logic-service
+    environment:
+      SPRING_PROFILES_ACTIVE: dev
+      DAO_SERVICE_URL: ${DAO_SERVICE_URL:-http://dao-service:8081}
+      SECRET_KEY: ${SECRET_KEY:--+4ye04peo-usv3u!xl)jua#m(tnu=z(u1*@%u^qnn^_v8!#wg^}
+    ports:
+      - "8082:8080"
     depends_on:
       postgres:
         condition: service_started

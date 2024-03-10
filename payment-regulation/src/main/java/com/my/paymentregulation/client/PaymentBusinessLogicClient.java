@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 @FeignClient(name = "payment-business-logic-client", url = "${service.payment-business-logic.base-url}")
 public interface PaymentBusinessLogicClient {
 
-  @GetMapping(value = "/payments")
+  @GetMapping(value = "/api/v1/payments")
   ResponseEntity<List<PaymentBriefResponse>> getPayments();
 
-  @PostMapping(value = "/payments/{paymentId}/withdrawals")
+  @PostMapping(value = "/api/v1/payments/{paymentId}/withdrawals")
   void createPaymentWithdrawal(@PathVariable Long paymentId);
 }

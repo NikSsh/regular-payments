@@ -81,13 +81,6 @@ Ensure the following software is installed on your system:
 
    This command will launch the defined services in detached mode (`-d`), allowing them to run in the background.
 
-If you want to run one of the services separately you can move under service directory and use such command:
- ```bash
-docker build -t payment-business-service .
-docker run -d --name payment-business-service -p 8083:8080 payment-business-service
-```
-Adjust external port as needed. 
-
 3. How to start payment regulation application
 
 - Navigate to the 'payment-regulation' Directory:
@@ -108,9 +101,8 @@ Adjust external port as needed.
 - Run the Application:
   Execute the following command to start the Payment Regulation Application:
      ```bash
-    java -jar PaymentRegulation-0.0.1-SNAPSHOT.jar
+    java -jar -Dservice.payment-business-logic.base-url=http://[actual_host]:[actual_port] PaymentRegulation-0.0.1-SNAPSHOT.jar
     ```
-
 Please note that before launching payment regulation, you need to start other services in the system.
 ### Accessing Services
 

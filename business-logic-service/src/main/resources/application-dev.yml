@@ -1,3 +1,6 @@
 service:
   payment-dao:
     base-url: ${DAO_SERVICE_URL}
+
+encryption:
+  secret-key: ${SECRET_KEY}
