@@ -1,0 +1,10 @@
+spring:
+  jpa:
+    properties:
+      hibernate:
+        default_schema: regular_payments
+
+  datasource:
+    username: postgres
+    password: postgres
+    url: jdbc:tc:postgresql:latest:///test_database

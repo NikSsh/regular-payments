@@ -1,0 +1,15 @@
+spring:
+  profiles:
+    active: local
+
+  flyway:
+    schemas: regular_payments
+
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+
+    properties:
+      hibernate:
+        default_schema: regular_payments
