@@ -1,5 +1,7 @@
 package com.my.paymentregulation.service;
 
+import static org.mockito.ArgumentMatchers.any;
+
 import com.my.paymentregulation.client.PaymentBusinessLogicClient;
 import com.my.paymentregulation.dto.PaymentBriefResponse;
 import com.my.paymentregulation.util.DataGenerator;
@@ -27,7 +29,7 @@ class PaymentWithdrawalServiceTest {
     List<PaymentBriefResponse> payments = DataGenerator
         .generatePaymentBriefResponses(30, true);
     Mockito.when(paymentBusinessLogicClient.getPayments())
-        .thenReturn(ResponseEntity.ok(payments));
+        .thenReturn(payments);
     // when
     paymentWithdrawalService.initiatePaymentWithdrawalProcess();
     // then
@@ -43,13 +45,11 @@ class PaymentWithdrawalServiceTest {
     List<PaymentBriefResponse> payments = DataGenerator
         .generatePaymentBriefResponses(30, false);
     Mockito.when(paymentBusinessLogicClient.getPayments())
-        .thenReturn(ResponseEntity.ok(payments));
+        .thenReturn(payments);
     // when
     paymentWithdrawalService.initiatePaymentWithdrawalProcess();
     // then
-    payments.parallelStream()
-        .forEach(paymentBriefResponse ->
-            Mockito.verify(paymentBusinessLogicClient, Mockito.never())
-                .createPaymentWithdrawal(paymentBriefResponse.id()));
+    Mockito.verify(paymentBusinessLogicClient, Mockito.never())
+                .createPaymentWithdrawal(any());
   }
 }
