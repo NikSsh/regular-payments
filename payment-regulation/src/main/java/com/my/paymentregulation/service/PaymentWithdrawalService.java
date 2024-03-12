@@ -15,13 +15,13 @@ public class PaymentWithdrawalService {
   private final PaymentBusinessLogicClient paymentBusinessLogicClient;
 
   public void initiatePaymentWithdrawalProcess() {
-    List<PaymentBriefResponse> payments = paymentBusinessLogicClient.getPayments().getBody();
-    payments.parallelStream().forEach(payment ->
-      CompletableFuture.runAsync(() -> {
-        if (isWithdrawalNeeded(payment)) {
-          paymentBusinessLogicClient.createPaymentWithdrawal(payment.id());
+    List<PaymentBriefResponse> payments = paymentBusinessLogicClient.getPayments();
+    payments.parallelStream().forEach(payment -> {
+          if (isWithdrawalNeeded(payment)) {
+            paymentBusinessLogicClient.createPaymentWithdrawal(payment.id());
+          }
         }
-    }));
+    );
   }
 
   private boolean isWithdrawalNeeded(PaymentBriefResponse payment) {

@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 public interface PaymentBusinessLogicClient {
 
   @GetMapping(value = "/api/v1/payments")
-  ResponseEntity<List<PaymentBriefResponse>> getPayments();
+  List<PaymentBriefResponse> getPayments();
 
   @PostMapping(value = "/api/v1/payments/{paymentId}/withdrawals")
   void createPaymentWithdrawal(@PathVariable Long paymentId);
