@@ -8,8 +8,8 @@ CREATE TABLE IF NOT EXISTS regular_payments.payments
     recipient_mfo           VARCHAR(6)      NOT NULL,
     recipient_okpo          VARCHAR(8)      NOT NULL,
     recipient_name          VARCHAR(160)    NOT NULL,
-    amount                  DECIMAL(10, 2)  NOT NULL,
-    withdrawal_period       NUMERIC(21,0)   NOT NULL,
+    amount                  DECIMAL(10, 2)  NOT NULL CHECK(amount > 0),
+    withdrawal_period       NUMERIC(21,0)   NOT NULL CHECK(withdrawal_period > 0),
     created_at              TIMESTAMP       NOT NULL,
 
     PRIMARY KEY (id)

@@ -2,7 +2,7 @@ CREATE TABLE IF NOT EXISTS regular_payments.payment_withdrawals
 (
     id                      BIGSERIAL       NOT NULL,
     payment_id              BIGINT          NOT NULL,
-    amount                  DECIMAL(10, 2)  NOT NULL,
+    amount                  DECIMAL(10, 2)  NOT NULL CHECK(amount > 0),
     created_at              TIMESTAMP       NOT NULL,
     status                  VARCHAR(1) CHECK (status IN ('A', 'S')) NOT NULL,
 
